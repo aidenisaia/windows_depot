@@ -4,7 +4,15 @@
 
 <h2>Your Pragmatic Cart</h2>
 <ul>
+  <% item_list = {} %>
   <% @cart.line_items.each do |item| %>
-    <li><%= item.product.title %></li>
+    <% if item_list[item.product.title] %>
+      <% item_list[item.product.title] += 1%>
+    <% else %>
+      <% item_list[item.product.title] = 1%>
+    <% end %>
+  <% end %>
+  <% item_list.each do |item, count| %>
+    <li><%= item %> x <%= count %></li>
   <% end %>
 </ul>
